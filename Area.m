@@ -1,4 +1,4 @@
-% 5,8, 9
+% 5,8, 9, 13
 syms x
 y1 = 2*x - x^2;
 y2 = -x; 
@@ -62,4 +62,23 @@ ax = gca; ax.XAxisLocation = 'origin'; ax.YAxisLocation = 'origin';
 >> x3 = y2.^2 / 4;
 >> area3 = trapz(y2, x3);
 
+% 12
+x = linspace(0.00001, 1, 10000);  
+y = log(x);
+y_neg = -y;                      
+area = trapz(x, y_neg);
+
+% 14
+x1 = linspace(-1,4,1000 );
+y1 = sqrt(3*x1 +4);
+y2 = -sqrt(3*x1 +4);
+area1 = trapz(x1, y1)
+>> area2 = trapz(x1, abs(y1 - y2))
+>> area1 / area2
+
+% 16
+f = @(x) 1 + (8 ./ (x.^2));
+area = @(a) integral(f, 2, a(1)) - integral(f, a(1), 4);
+guess = 3;
+sol = fzero(area, guess)
 
